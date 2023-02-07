@@ -215,7 +215,7 @@ Not parsed balances (1):
 2. Create a folder and put the EXE file in it.
 3. Run the program the first time and press `Enter` to create necessary files.
 4. Insert addresses to be checked into the `addresses.txt` file.
-5. Insert HTTP IPv4/IPv6 proxies into the `proxies.txt` file.
+5. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
 The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 addresses + 20 proxies), when checking with NFTs 1:3.
 6. Configure the `settings.json` if you want:
    - `threads` — the number of threads (>10 not recommended);
@@ -253,7 +253,7 @@ docker build -t eth-balances-checker .
 docker run -it --rm -v $HOME/eth-balances-checker/:/program --name eth-balances-checker eth-balances-checker
 ```
 6. Insert addresses to be checked into the `addresses.txt` file.
-7. Insert HTTP IPv4/IPv6 proxies into the `proxies.txt` file.
+7. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
 The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 addresses + 20 proxies), when checking with NFTs 1:3.
 8. Configure the `settings.json` if you want:
    - `threads` — the number of threads (>10 not recommended);
@@ -289,7 +289,7 @@ pip install -r requirements.txt
 ```
 6. Run the `app.py` the first time and press `Enter` to create necessary files.
 7. Insert addresses to be checked into the `addresses.txt` file.
-8. Insert HTTP IPv4/IPv6 proxies into the `proxies.txt` file.
+8. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
 The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 addresses + 20 proxies), when checking with NFTs 1:3.
 9. Configure the `settings.json` if you want:
    - `threads` — the number of threads (>10 not recommended);
