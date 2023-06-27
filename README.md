@@ -1,4 +1,4 @@
-<h1><p align="center">Eth balances checker</p></h1><h1>
+<h1><p align="center">eth-balances-checker</p></h1>
 
 <p align="center"><img src="images/icons/app.ico" width="400"></p>
 
@@ -6,19 +6,20 @@
 
 <h1><p align="center">Content</p></h1>
 
-- [Short description](#Short-description)
+- [Description](#Description)
 - [Useful links](#Useful-links)
 - [File structure](#File-structure)
 - [How to run](#How-to-run)
     - [Windows](#Windows)
-    - [Docker](#Docker)
+    - [Docker (image)](#Docker-image)
+    - [Docker (building)](#Docker-building)
     - [Source code](#Source-code)
 - [Report a bug or suggest an idea](#Report-a-bug-or-suggest-an-idea)
 - [Express your gratitude](#Express-your-gratitude)
 
 
 
-<h1><p align="center">Short description</p></h1>
+<h1><p align="center">Description</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
 
 ⠀This program allows you to get balances of multiple addresses in major Ethereum-like networks.
@@ -178,18 +179,20 @@ ERROR
 Not parsed balances (1):
 0x15B328F211B7a9387CA4da4a6DB4990eAF37b1b3
 ```
-            
+
+
 
 <h1><p align="center">Useful links</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
 
-⠀[Eth balances checker](https://github.com/SecorD0/eth-balances-checker)
+⠀[eth-balances-checker](https://github.com/SecorD0/eth-balances-checker)
 
 ⠀[DeBank](https://debank.com/)
 
 ⠀[DeBank async library](https://github.com/SecorD0/py-debank-async)
 
 ⠀[DeBank sync library](https://github.com/SecorD0/py-debank)
+
 
 
 <h1><p align="center">File structure</p></h1>
@@ -208,6 +211,7 @@ Not parsed balances (1):
 
 <h1><p align="center">How to run</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
+
 
 <h2><p align="center">Windows</p></h2>
 
@@ -230,7 +234,36 @@ if there are still addresses whose balances couldn't be parsed.
 10. Open the `result.txt` file and look at the result of the program.
 
 
-<h2><p align="center">Docker</p></h2>
+<h2><p align="center">Docker (image)</p></h2>
+
+1. Install Docker, in Ubuntu you can use the command:
+```sh
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/installers/docker.sh)
+```
+2. Run the program the first time and press `Enter` to create necessary files:
+```sh
+docker run -it --rm -v $HOME/eth-balances-checker/files:/program/files --name eth-balances-checker ghcr.io/secord0/eth-balances-checker:main
+```
+3. Insert addresses to be checked into the `addresses.txt` file.
+4. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
+The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 addresses + 20 proxies), when checking with NFTs 1:3.
+5. Configure the `settings.json` if you want:
+   - `threads` — the number of threads (>10 not recommended);
+   - `parse_nfts` — whether to parse NFTs (`true` or `false`).
+6. Run the program:
+```sh
+docker run -it --rm -v $HOME/eth-balances-checker/files:/program/files --name eth-balances-checker ghcr.io/secord0/eth-balances-checker:main
+```
+7. You can see the following statuses:
+   - `[V]` — the balance was parsed successfully;
+   - `[X]` — the balance was parsed unsuccessfully three times.
+This can happen if you get a balance from 1 IP too often.
+8. Delete already parsed addresses from the `addresses.txt` file and repeat step 9-11 after some time,
+if there are still addresses whose balances couldn't be parsed.
+9. Open the `result.txt` file and look at the result of the program.
+
+
+<h2><p align="center">Docker (building)</p></h2>
 
 1. Install Docker, in Ubuntu you can use the command:
 ```sh
@@ -273,7 +306,7 @@ if there are still addresses whose balances couldn't be parsed.
 
 <h2><p align="center">Source code</p></h2>
 
-1. Install [Python](https://www.python.org/downloads/).
+1. Install [Python 3.8](https://www.python.org/downloads/).
 2. Clone the repository:
 ```sh
 git clone https://github.com/SecorD0/eth-balances-checker
@@ -304,7 +337,12 @@ if there are still addresses whose balances couldn't be parsed.
 13. Open the `result.txt` file and look at the result of the program.
 
 
-⠀If you want to build the EXE file by yourself, use the command:
+⠀If you want to build the EXE file by yourself:
+- Install `pyinstaller`:
+```sh
+pip install pyinstaller
+```
+- Build the EXE file:
 ```sh
 pyinstaller app.py -Fn eth-balances-checker -i images/icons/app.ico --add-binary "images/icons;images/icons"
 ```
@@ -322,7 +360,7 @@ pyinstaller app.py -Fn eth-balances-checker -i images/icons/app.ico --add-binary
 <p align="right"><a href="#Content">To the content</a></p>
 
 ⠀You can express your gratitude to the developer by sending fund to crypto wallets!
-- Ethereum-like address (Ethereum, BSC, Moonbeam, etc.): `0x900649087b8D7b9f799F880427DacCF2286D8F20`
+- Address of EVM networks (Ethereum, Polygon, BSC, etc.): `0x900649087b8D7b9f799F880427DacCF2286D8F20`
 - USDT TRC-20: `TNpBdjcmR5KzMVCBJTRYMJp16gCkQHu84K`
 - SOL: `DoZpXzGj5rEZVhEVzYdtwpzbXR8ifk5bajHybAmZvR4H`
 - BTC: `bc1qs4a0c3fntlhzn9j297qdsh3splcju54xscjstc`
