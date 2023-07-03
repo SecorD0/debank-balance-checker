@@ -1,4 +1,4 @@
-<h1><p align="center">eth-balances-checker</p></h1>
+<h1><p align="center">debank-balance-checker</p></h1>
 
 <p align="center"><img src="images/icons/app.ico" width="400"></p>
 
@@ -14,6 +14,12 @@
     - [Docker (image)](#Docker-image)
     - [Docker (building)](#Docker-building)
     - [Source code](#Source-code)
+- [Updating](#Updating)
+  - [Windows](#Windows-1)
+  - [GitHub image](#GitHub-image)
+  - [Self-built image](#Self-built-image)
+  - [Source code](#Source-code-1)
+- [Useful commands](#Useful-commands)
 - [Report a bug or suggest an idea](#Report-a-bug-or-suggest-an-idea)
 - [Express your gratitude](#Express-your-gratitude)
 
@@ -22,7 +28,7 @@
 <h1><p align="center">Description</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
 
-⠀This program allows you to get balances of multiple addresses in major Ethereum-like networks.
+⠀The program allows you to get balances of multiple addresses in major EVM networks.
 
 ⠀You will get a file with address balances (it's a random address from the explorer) in the form of:
 ```
@@ -185,7 +191,7 @@ Not parsed balances (1):
 <h1><p align="center">Useful links</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
 
-⠀[eth-balances-checker](https://github.com/SecorD0/eth-balances-checker)
+⠀[debank-balance-checker](https://github.com/SecorD0/debank-balance-checker)
 
 ⠀[DeBank](https://debank.com/)
 
@@ -205,7 +211,7 @@ Not parsed balances (1):
   - `proxies.txt` — a text file with HTTP IPv4/IPv6 proxies;
   - `result.txt` — a text file with the results in a readable form;
   - `settings.json` — a JSON file for program setup.
-- `eth-balances-checker.exe` / `app.py` — an executable file that runs the program.
+- `debank-balance-checker.exe` / `app.py` — an executable file that runs the program.
 
 
 
@@ -215,7 +221,7 @@ Not parsed balances (1):
 
 <h2><p align="center">Windows</p></h2>
 
-1. Download an EXE file from the [releases page](https://github.com/SecorD0/eth-balances-checker/releases).
+1. Download an EXE file from the [releases page](https://github.com/SecorD0/debank-balance-checker/releases).
 2. Create a folder and put the EXE file in it.
 3. Run the program the first time and press `Enter` to create necessary files.
 4. Insert addresses to be checked into the `addresses.txt` file.
@@ -242,7 +248,7 @@ if there are still addresses whose balances couldn't be parsed.
 ```
 2. Run the program the first time and press `Enter` to create necessary files:
 ```sh
-docker run -it --rm -v $HOME/eth-balances-checker/files:/program/files --name eth-balances-checker ghcr.io/secord0/eth-balances-checker:main
+docker run -it --rm -v $HOME/debank-balance-checker/files:/program/files --name debank-balance-checker ghcr.io/secord0/debank-balance-checker:main
 ```
 3. Insert addresses to be checked into the `addresses.txt` file.
 4. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
@@ -252,7 +258,7 @@ The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 ad
    - `parse_nfts` — whether to parse NFTs (`true` or `false`).
 6. Run the program:
 ```sh
-docker run -it --rm -v $HOME/eth-balances-checker/files:/program/files --name eth-balances-checker ghcr.io/secord0/eth-balances-checker:main
+docker run -it --rm -v $HOME/debank-balance-checker/files:/program/files --name debank-balance-checker ghcr.io/secord0/debank-balance-checker:main
 ```
 7. You can see the following statuses:
    - `[V]` — the balance was parsed successfully;
@@ -271,19 +277,19 @@ if there are still addresses whose balances couldn't be parsed.
 ```
 2. Clone the repository:
 ```sh
-cd; git clone https://github.com/SecorD0/eth-balances-checker
+cd; git clone https://github.com/SecorD0/debank-balance-checker
 ```
 3. Go to the repository:
 ```sh
-cd eth-balances-checker
+cd debank-balance-checker
 ```
 4. Build an image:
 ```sh
-docker build -t eth-balances-checker .
+docker build -t debank-balance-checker .
 ```
 5. Run the program the first time and press `Enter` to create necessary files:
 ```sh
-docker run -it --rm -v $HOME/eth-balances-checker/:/program --name eth-balances-checker eth-balances-checker
+docker run -it --rm -v $HOME/debank-balance-checker/:/program --name debank-balance-checker debank-balance-checker
 ```
 6. Insert addresses to be checked into the `addresses.txt` file.
 7. Insert HTTP IPv4/IPv6 proxies in the `login:password@ip:port` format into the `proxies.txt` file.
@@ -293,7 +299,7 @@ The optimal `address:proxy` ratio when checking without NFTs would be 1:2 (10 ad
    - `parse_nfts` — whether to parse NFTs (`true` or `false`).
 9. Run the program:
 ```sh
-docker run -it --rm -v $HOME/eth-balances-checker/:/program --name eth-balances-checker eth-balances-checker
+docker run -it --rm -v $HOME/debank-balance-checker/:/program --name debank-balance-checker debank-balance-checker
 ```
 10. You can see the following statuses:
    - `[V]` — the balance was parsed successfully;
@@ -309,11 +315,11 @@ if there are still addresses whose balances couldn't be parsed.
 1. Install [Python 3.8](https://www.python.org/downloads/).
 2. Clone the repository:
 ```sh
-git clone https://github.com/SecorD0/eth-balances-checker
+git clone https://github.com/SecorD0/debank-balance-checker
 ```
 3. Go to the repository:
 ```sh
-cd eth-balances-checker
+cd debank-balance-checker
 ```
 4. Set up an environment.
 5. Install requirements:
@@ -344,7 +350,89 @@ pip install pyinstaller
 ```
 - Build the EXE file:
 ```sh
-pyinstaller app.py -Fn eth-balances-checker -i images/icons/app.ico --add-binary "images/icons;images/icons"
+pyinstaller app.py -Fn debank-balance-checker -i images/icons/app.ico --add-binary "images/icons;images/icons"
+```
+
+
+
+<h1><p align="center">Updating</p></h1>
+<p align="right"><a href="#Content">To the content</a></p>
+
+
+<h2><p align="center">Windows</p></h2>
+
+1. Download an EXE file of the new version from the [releases page](https://github.com/SecorD0/debank-balance-checker/releases) and replace the old one with it.
+
+
+<h2><p align="center">GitHub image</p></h2>
+
+1. Stop the container:
+```sh
+docker stop debank-balance-checker
+```
+2. Remove the container:
+```sh
+docker rm debank-balance-checker
+```
+3. Update the image:
+```sh
+docker pull ghcr.io/secord0/debank-balance-checker:main
+```
+
+
+<h2><p align="center">Self-built image</p></h2>
+
+1. Stop the container:
+```sh
+docker stop debank-balance-checker
+```
+2. Remove the container:
+```sh
+docker rm debank-balance-checker
+```
+3. Go to the repository:
+```sh
+cd debank-balance-checker
+```
+4. Update the local files:
+```sh
+git pull
+```
+5. Rebuild the image:
+```sh
+docker build -t debank-balance-checker .
+```
+
+
+<h2><p align="center">Source code</p></h2>
+
+1. Go to the repository:
+```sh
+cd debank-balance-checker
+```
+2. Update the local files:
+```sh
+git pull
+```
+
+
+
+<h1><p align="center">Useful commands</p></h1>
+<p align="right"><a href="#Content">To the content</a></p>
+
+⠀To run the program (GitHub image):
+```sh
+docker run -it --rm -v $HOME/debank-balance-checker/files:/program/files --name debank-balance-checker ghcr.io/secord0/debank-balance-checker:main
+```
+
+⠀To run the program (self-built image):
+```sh
+docker run -it --rm -v $HOME/debank-balance-checker/:/program --name debank-balance-checker debank-balance-checker
+```
+
+⠀To remove the container:
+```sh
+docker stop debank-balance-checker; docker rm debank-balance-checker
 ```
 
 
@@ -352,7 +440,7 @@ pyinstaller app.py -Fn eth-balances-checker -i images/icons/app.ico --add-binary
 <h1><p align="center">Report a bug or suggest an idea</p></h1>
 <p align="right"><a href="#Content">To the content</a></p>
 
-⠀If you found a bug or have an idea, go to [the link](https://github.com/SecorD0/eth-balances-checker/issues/new/choose), select the template, fill it out and submit it.
+⠀If you found a bug or have an idea, go to [the link](https://github.com/SecorD0/debank-balance-checker/issues/new/choose), select the template, fill it out and submit it.
 
 
 
